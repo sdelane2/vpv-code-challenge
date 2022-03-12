@@ -1,0 +1,10 @@
+theme:
+  password: 'shptka_45ea548f9d4d49bf4f492ab8e0d1d834'
+  theme_id: '128956661946'
+  store: vpv-code-challenge.myshopify.com
+  ignore_files:
+    - settings_data.json
+    - src
+    - node_modules
+    - package.json
+    - package-lock.json

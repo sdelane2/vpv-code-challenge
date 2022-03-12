@@ -1,0 +1,7 @@
+node_modules
+dist
+.cache
+src/config/settings_data.json
+cypress.json
+bs-config.js
+.DS_Store
