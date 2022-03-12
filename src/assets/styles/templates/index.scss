@@ -1,0 +1,21 @@
+.swatch{
+    display: block;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background-color: white;
+    text-align: right;
+    cursor: pointer;
+    margin: 3px 4px;
+    
+    &.blue {background-color: #00BCD3;}
+    &.red {background-color: #EF5350;}
+    &.gold {background-color: #FEC109;}
+    &.brown {background-color: #AF806E;}
+    &.mediumgray {background-color: #CDCDCD;}
+    &.navy {background-color: #2F3676;}
+    &.yellow {background-color: #FEC109;}
+    &.darkwash {background-color: #2F3676;}
+    &.lightwash {background-color: #00BCD3;}
+}
