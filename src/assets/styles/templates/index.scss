@@ -1,41 +1,78 @@
+* {box-sizing:border-box;}
 .card-container{
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
-    justify-content: space-between;
+    margin: auto;
+    max-width: 900px; 
     .card{
         display: flex;
-        width: 48%;
+        flex: 1 0 30%;
+        margin: 10px;
+        justify-content: center;
         flex-wrap: wrap;
+        margin-bottom: 2em;
+        @media(max-width: 510px){
+            flex: 1 0 50%;
+        }
+        &__image{
+            img{
+                width: 280px;
+                height: auto;
+                width: 100%;
+                padding-bottom: 1em;
+            }
+        }
         &__title{
             display: flex;
+            justify-content: center;
             flex-basis: 100%;
+            padding-bottom: 1em;
         }
-    }
-    .swatch-container{
-        display: flex;
-        justify-content: flex-start;
-        .swatch{
-            display: block;
-            height: 15px;
-            width: 15px;
-            border-radius: 50%;
-            border: 1px solid #ccc;
-            background-color: white;
-            text-align: right;
-            cursor: pointer;
-            margin: 3px 4px;
+        &__price{
+            display: flex;
+            justify-content: center;
+            flex-basis: 100%;
+            padding-bottom: 1em;
+            .price-compare{
+                text-decoration: line-through;
+                margin-right: 8px;
+            }
             
-            &.blue {background-color: #00BCD3;}
-            &.red {background-color: #EF5350;}
-            &.gold {background-color: #FEC109;}
-            &.brown {background-color: #AF806E;}
-            &.mediumgray {background-color: #CDCDCD;}
-            &.navy {background-color: #2F3676;}
-            &.yellow {background-color: #FEC109;}
-            &.darkwash {background-color: #2F3676;}
-            &.lightwash {background-color: #00BCD3;}
+            .price{
+
+            }
         }
-    }
-    
+        &__swatches{
+            display: flex;
+            justify-content: flex-start;
+            
+            .swatch{
+                display: block;
+                height: 20px;
+                width: 20px;
+                border-radius: 50%;
+                border: 1px solid #ccc;
+                background-color: white;
+                text-align: right;
+                cursor: pointer;
+                margin: 3px 4px;
+                
+                
+                &.active{
+                    border: 1px solid black;
+                    box-shadow: 0 2px 19px 0 rgba(0,0,0,0.06);
+                }
+                &.blue {background-color: #00BCD3;}
+                &.red {background-color: #EF5350;}
+                &.gold {background-color: #FEC109;}
+                &.brown {background-color: #AF806E;}
+                &.mediumgray {background-color: #CDCDCD;}
+                &.navy {background-color: #2F3676;}
+                &.yellow {background-color: #FEC109;}
+                &.darkwash {background-color: #2F3676;}
+                &.lightwash {background-color: #00BCD3;}
+                
+            }
+        }
+    }    
 }
