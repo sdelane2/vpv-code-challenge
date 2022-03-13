@@ -3,23 +3,44 @@ import '../../styles/templates/index.scss';
 import getAllProducts from '../graphql/collection-starter-code';
 
 const container = document.querySelector('.card-container')
+function addCustomEventListener(selector, event, handler) {
+    let rootElement = document.querySelector('body');
+    rootElement.addEventListener(event, function (evt) {
+            var targetElement = evt.target;
+            while (targetElement != null) {
+                if (targetElement.matches(selector)) {
+                    handler(evt);
+                    return;
+                }
+                targetElement = targetElement.parentElement;
+            }
+        },
+        true
+    );
+}
+
+function swatchClickHandler(e){
+    let closestImage = e.target.closest('.card').querySelector('.image-class')
+    closestImage.src = e.target.dataset.image
+}
+addCustomEventListener('.swatch','click', swatchClickHandler);
 
 getAllProducts('test-collection').then(data => {
-    console.log(data)
     data.forEach(product => {
-        // swatches(product)
-        
+        let productObj = {
+            title : product.title,
+            colorOptions: product.options[0].values, 
+            images : product.variants.map(variant => variant.image.src),
+        }
+        productObj.images = [...new Set(productObj.images)]
         container.insertAdjacentHTML("afterbegin", 
             `
                 <div class= "card">
-                    <div>
-                        <img  src=${product.variants[0].image.src}/>
-                    </div>
-
+                    <img class="image-class" src=${productObj.images[0]}/>
                     <div class="card__title">${product.title}</div>
                     <div class="swatch-container">
                     ${product.options[0]['name'] == 'Color' ?
-                        product.options[0].values.map(name => {
+                        product.options[0].values.map((name, index) => {
                             let colorClass 
                             if(name === 'Blue') colorClass = "blue"
                             else if(name === 'Red') colorClass = "red"
@@ -31,7 +52,7 @@ getAllProducts('test-collection').then(data => {
                             else if(name === 'Yellow') colorClass = "yellow"
                             else if(name === 'Dark Wash') colorClass = "darkwash"
                             else if(name === 'Light Wash') colorClass = "lightwash"
-                            return `<a class='swatch ${colorClass}'></a>`
+                            return `<a class='swatch ${colorClass}' data-image='${productObj.images[index]}'  ></a>`
                         }).join(" ")
                     :
                     ''
@@ -39,5 +60,5 @@ getAllProducts('test-collection').then(data => {
                 </div>
             `
         ) 
-    });  
+    });
 })
